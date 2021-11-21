@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ArsipModel extends Model
+class FilesModel extends Model
 {
     use HasFactory;
-    protected $table = "tb_folder";
+
+    protected $table = 'tb_files';
     protected $guarded = ['id'];
 
-    public function files_list()
+    public function folder()
     {
-        return $this->hasMany(FilesModel::class, 'id_folder');
+        return $this->belongsTo(ArsipModel::class, 'id_folder');
     }
 }

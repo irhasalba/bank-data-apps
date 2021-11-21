@@ -1,13 +1,13 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { Card, CardBody, Table, Alert } from "reactstrap";
+import { Button, Card, CardBody, Table, Alert } from "reactstrap";
 import Header from "../components/templates/Header";
 import NavbarComponent from "../components/templates/NavbarComponent";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "@inertiajs/inertia-react";
 
-const ArsipList = (props) => {
-    const { arsip, flash } = props;
+const ListFileFolder = (props) => {
+    const { listfile, id_folder, flash } = props;
     const alert =
         flash.message != null ? <Alert dismissible>{flash.message}</Alert> : "";
     const [visible, SetVisible] = useState(false);
@@ -16,56 +16,58 @@ const ArsipList = (props) => {
             SetVisible(true);
         }, 3000);
     });
+
     return (
         <>
-            <Header title="Halaman Kelola Arsip" />
+            <Header title="Halaman List File" />
             <NavbarComponent />
             <div className="container mt-5">
                 <Card>
                     <CardBody>
                         {visible != true ? alert : ""}
                         <Link
-                            className="btn btn-primary mb-2"
-                            href={route("dashboard.tambah.arsip")}
+                            className="btn btn-primary btn-sm mb-3"
+                            href={route("dashboard.arsip.upload", id_folder)}
                         >
-                            <FontAwesomeIcon icon={faPlus} /> Tambah Folder Baru
+                            Upload File
                         </Link>
                         <Table bordered hover responsive size="sm">
                             <thead>
                                 <tr>
-                                    <th>Nama Folder</th>
-                                    <th>Tanggal Pembuatan</th>
-                                    <th>Tanggal Update</th>
+                                    <th>No</th>
+                                    <th>Nama File</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {arsip.map((arsip) => {
+                                {listfile.map((file, key) => {
                                     return (
-                                        <tr key={arsip.id}>
+                                        <tr key={key + 1}>
+                                            <td>{key + 1}</td>
+                                            <td>{file.files}</td>
                                             <td>
-                                                {" "}
                                                 <Link
+                                                    className="btn btn-success btn-sm "
+                                                    title="lihat"
                                                     href={route(
-                                                        "dashboard.arsip.folder",
-                                                        arsip.id
+                                                        "dashboard.show.files",
+                                                        file.id
                                                     )}
                                                 >
-                                                    {arsip.nama_folder}
+                                                    <FontAwesomeIcon
+                                                        icon={faEye}
+                                                    />
                                                 </Link>
                                             </td>
-                                            <td>{arsip.created_at}</td>
-                                            <td>{arsip.updated_at}</td>
                                         </tr>
                                     );
                                 })}
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Nama Folder</th>
-                                    <th>Tanggal Pembuatan</th>
-                                    <th>Tanggal Update</th>
-                                </tr>
-                            </tfoot>
+                            <thead>
+                                <th>No</th>
+                                <th>Nama File</th>
+                                <th>Aksi</th>
+                            </thead>
                         </Table>
                     </CardBody>
                 </Card>
@@ -74,4 +76,4 @@ const ArsipList = (props) => {
     );
 };
 
-export default ArsipList;
+export default ListFileFolder;

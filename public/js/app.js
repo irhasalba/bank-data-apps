@@ -16169,9 +16169,9 @@ var ArsipList = function ArsipList(props) {
                   children: "Tanggal Update"
                 })]
               })
-            }), arsip.map(function (arsip) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("tbody", {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("tbody", {
+              children: arsip.map(function (arsip) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("td", {
                     children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__.Link, {
                       href: route("dashboard.arsip.folder", arsip.id),
@@ -16182,8 +16182,8 @@ var ArsipList = function ArsipList(props) {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
                     children: arsip.updated_at
                   })]
-                })
-              });
+                }, arsip.id);
+              })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("tfoot", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
@@ -16203,6 +16203,47 @@ var ArsipList = function ArsipList(props) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ArsipList);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/DetailFile.jsx":
+/*!*******************************************!*\
+  !*** ./resources/js/Pages/DetailFile.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.modern.js");
+/* harmony import */ var _components_templates_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/templates/Header */ "./resources/js/components/templates/Header.jsx");
+/* harmony import */ var _components_templates_NavbarComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/templates/NavbarComponent */ "./resources/js/components/templates/NavbarComponent.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+var DetailFile = function DetailFile(props) {
+  var detail_file = props.detail_file;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_templates_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      title: "Halaman Detail File"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_templates_NavbarComponent__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_4__.Card, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_4__.CardBody, {
+        children: detail_file.files
+      })
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DetailFile);
 
 /***/ }),
 
@@ -16249,6 +16290,132 @@ var Home = function Home() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/ListFileFolder.jsx":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/ListFileFolder.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.modern.js");
+/* harmony import */ var _components_templates_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/templates/Header */ "./resources/js/components/templates/Header.jsx");
+/* harmony import */ var _components_templates_NavbarComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/templates/NavbarComponent */ "./resources/js/components/templates/NavbarComponent.jsx");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+
+var ListFileFolder = function ListFileFolder(props) {
+  var listfile = props.listfile,
+      id_folder = props.id_folder,
+      flash = props.flash;
+  var alert = flash.message != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Alert, {
+    dismissible: true,
+    children: flash.message
+  }) : "";
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      visible = _useState2[0],
+      SetVisible = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    setTimeout(function () {
+      SetVisible(true);
+    }, 3000);
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_templates_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      title: "Halaman List File"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_templates_NavbarComponent__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      className: "container mt-5",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Card, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.CardBody, {
+          children: [visible != true ? alert : "", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            className: "btn btn-primary btn-sm mb-3",
+            href: route("dashboard.arsip.upload", id_folder),
+            children: "Upload File"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Table, {
+            bordered: true,
+            hover: true,
+            responsive: true,
+            size: "sm",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("thead", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  children: "No"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  children: "Nama File"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  children: "Aksi"
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("tbody", {
+              children: listfile.map(function (file, key) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                    children: key + 1
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                    children: file.files
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__.Link, {
+                      className: "btn btn-success btn-sm ",
+                      title: "lihat",
+                      href: route("dashboard.show.files", file.id),
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_0__.FontAwesomeIcon, {
+                        icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faEye
+                      })
+                    })
+                  })]
+                }, key + 1);
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("thead", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                children: "No"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                children: "Nama File"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                children: "Aksi"
+              })]
+            })]
+          })]
+        })
+      })
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ListFileFolder);
 
 /***/ }),
 
@@ -16386,6 +16553,127 @@ var Login = function Login() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Login);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/UploadFile.jsx":
+/*!*******************************************!*\
+  !*** ./resources/js/Pages/UploadFile.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.modern.js");
+/* harmony import */ var _components_templates_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/templates/Header */ "./resources/js/components/templates/Header.jsx");
+/* harmony import */ var _components_templates_NavbarComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/templates/NavbarComponent */ "./resources/js/components/templates/NavbarComponent.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+
+
+var UploadFile = function UploadFile(props) {
+  var folder = props.folder;
+
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.useForm)({
+    jenis: "",
+    files: null,
+    id: folder.id
+  }),
+      data = _useForm.data,
+      setData = _useForm.setData,
+      post = _useForm.post;
+
+  var handlerSubmit = function handlerSubmit(e) {
+    e.preventDefault();
+    var formData = new FormData();
+    formData.append("jenis", data.jenis);
+    formData.append("file", data.files);
+    formData.append("id_folder", data.id);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__.Inertia.post(route("dashboard.save.upload"), formData);
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_templates_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      title: "Halaman Upload File"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_templates_NavbarComponent__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      className: "container mt-5",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Card, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.CardBody, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
+            onSubmit: handlerSubmit,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Label, {
+                children: "Lokasi Folder"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Input, {
+                value: folder.nama_folder,
+                readOnly: true
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Label, {
+              children: "Pilih Jenis Upload"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
+              check: true,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Input, {
+                name: "jenis",
+                type: "radio",
+                value: "1",
+                onChange: function onChange(e) {
+                  return setData("jenis", e.target.value);
+                },
+                checked: data.jenis == 1
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Label, {
+                children: "Gambar/Foto"
+              }), " "]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
+              check: true,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Input, {
+                name: "jenis",
+                type: "radio",
+                value: "0",
+                onChange: function onChange(e) {
+                  return setData("jenis", e.target.value);
+                }
+              }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Label, {
+                children: "Arsip File(PDF,Docx,Excel)"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Label, {
+                className: "mt-3",
+                children: "Upload File"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Input, {
+                type: "file",
+                multiple: true,
+                name: "files[]",
+                onChange: function onChange(e) {
+                  return setData("files", e.target.files[0]);
+                }
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Button, {
+              color: "primary",
+              size: "sm",
+              type: "submit",
+              children: "Simpan Data"
+            })]
+          })
+        })
+      })
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UploadFile);
 
 /***/ }),
 
@@ -88558,10 +88846,16 @@ var map = {
 	"./ArsipFolder.jsx": "./resources/js/Pages/ArsipFolder.jsx",
 	"./ArsipList": "./resources/js/Pages/ArsipList.jsx",
 	"./ArsipList.jsx": "./resources/js/Pages/ArsipList.jsx",
+	"./DetailFile": "./resources/js/Pages/DetailFile.jsx",
+	"./DetailFile.jsx": "./resources/js/Pages/DetailFile.jsx",
 	"./Home": "./resources/js/Pages/Home.jsx",
 	"./Home.jsx": "./resources/js/Pages/Home.jsx",
+	"./ListFileFolder": "./resources/js/Pages/ListFileFolder.jsx",
+	"./ListFileFolder.jsx": "./resources/js/Pages/ListFileFolder.jsx",
 	"./Login": "./resources/js/Pages/Login.jsx",
-	"./Login.jsx": "./resources/js/Pages/Login.jsx"
+	"./Login.jsx": "./resources/js/Pages/Login.jsx",
+	"./UploadFile": "./resources/js/Pages/UploadFile.jsx",
+	"./UploadFile.jsx": "./resources/js/Pages/UploadFile.jsx"
 };
 
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Backend\ArsipController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\FilesModel as File;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::get('/arsip/tambah-folder', [ArsipController::class, 'create'])->name('tambah.arsip');
     Route::post('/arsip/tambah/simpan', [ArsipController::class, 'store'])->name('simpan.arsip');
     Route::get('/arsip/folder/{id}', [ArsipController::class, 'show'])->name('arsip.folder');
+    Route::get('/arsip/folder/uploads/{id}', [ArsipController::class, 'upload_file'])->name('arsip.upload');
+    Route::post('/upload/file', [ArsipController::class, 'save_file'])->name('save.upload');
+    Route::get('/arsip/{file}', [ArsipController::class, 'show_detail_file'])->name('show.files');
 });
