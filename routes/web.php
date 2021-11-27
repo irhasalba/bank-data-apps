@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Backend\ArsipController;
+use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\FilesModel as File;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +23,11 @@ Route::get('/', function () {
     return Inertia::render('Login');
 });
 Route::post('/users', [AuthController::class, 'store'])->name('user.register');
-Route::get('/home', function () {
-    return Inertia::render('Home');
-})->name('home');
+Route::get('/home', [DashboardController::class, 'index'])->name('home');
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
+    Route::get('/home/submenu/{id}', [DashboardController::class, 'sub_menu'])->name('submenu');
+    Route::get('/home/tambah/submenu/{id}', [DashboardController::class, 'tambah_submenu'])->name('tambah.submenu');
+    Route::post('/home/tambah/simpan/submenu', [DashboardController::class, 'store_submenu'])->name('create.submenu');
     Route::get('/home/arsip', [ArsipController::class, 'index'])->name('arsip');
     Route::get('/arsip/tambah-folder', [ArsipController::class, 'create'])->name('tambah.arsip');
     Route::post('/arsip/tambah/simpan', [ArsipController::class, 'store'])->name('simpan.arsip');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TbFolder extends Migration
+class CmsMenu extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class TbFolder extends Migration
      */
     public function up()
     {
-        Schema::create('tb_folder', function (Blueprint $table) {
+        Schema::create('cms_menu', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_parent_folder');
-            $table->unsignedBigInteger('id_submenu');
-            $table->string('nama_folder')->nullable();
+            $table->string("nama_menu");
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class TbFolder extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_folder');
+        Schema::dropIfExists('cms_menu');
     }
 }
