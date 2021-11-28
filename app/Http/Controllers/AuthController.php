@@ -41,7 +41,11 @@ class AuthController extends Controller
             'email' => 'required'
         ]);
 
-        User::create($data);
+        User::create([
+            'name' => $request->name,
+            'password' => sha1($request->password),
+            'email' => $request->email
+        ]);
         return Redirect::route('home');
     }
 

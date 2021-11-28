@@ -48,7 +48,10 @@ const SubMenuPages = (props) => {
                                                 <Link
                                                     href={route(
                                                         "dashboard.list.submenu.folder",
-                                                        data.id
+                                                        {
+                                                            parent: id_parent,
+                                                            sub_parent: data.id,
+                                                        }
                                                     )}
                                                 >
                                                     {data.nama_submenu}

@@ -16,7 +16,10 @@ const UploadFile = (props) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("jenis", data.jenis);
-        formData.append("file", data.files);
+        const photoFile = data.files;
+        for (let index = 0; index < photoFile.length; index++) {
+            formData.append(`file[${index}]`, data.files[index]);
+        }
         formData.append("id_folder", data.id);
         Inertia.post(route("dashboard.save.upload"), formData);
     };
@@ -64,7 +67,7 @@ const UploadFile = (props) => {
                                     multiple
                                     name="files[]"
                                     onChange={(e) =>
-                                        setData("files", e.target.files[0])
+                                        setData("files", e.target.files)
                                     }
                                 />
                             </FormGroup>

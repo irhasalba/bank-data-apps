@@ -6,6 +6,8 @@ use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\FilesModel as File;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\File as FileStorage;
 
 
 /*
@@ -26,7 +28,7 @@ Route::post('/users', [AuthController::class, 'store'])->name('user.register');
 Route::get('/home', [DashboardController::class, 'index'])->name('home');
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::get('/home/submenu/{id}', [DashboardController::class, 'sub_menu'])->name('submenu');
-    Route::get('/home/submenu/folder/{id}', [ArsipController::class, 'index'])->name('list.submenu.folder');
+    Route::get('/home/submenu/folder/{parent}/{sub_parent}', [ArsipController::class, 'index'])->name('list.submenu.folder');
     Route::get('/home/tambah/submenu/{id}', [DashboardController::class, 'tambah_submenu'])->name('tambah.submenu');
     Route::post('/home/tambah/simpan/submenu', [DashboardController::class, 'store_submenu'])->name('create.submenu');
     Route::get('/arsip/tambah/{id_parent}/{id_submenu}', [ArsipController::class, 'create'])->name('tambah.arsip');
@@ -35,4 +37,19 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::get('/arsip/folder/uploads/{id}', [ArsipController::class, 'upload_file'])->name('arsip.upload');
     Route::post('/upload/file', [ArsipController::class, 'save_file'])->name('save.upload');
     Route::get('/arsip/{file}', [ArsipController::class, 'show_detail_file'])->name('show.files');
+    Route::get('/photo/file/{id}', function ($id) {
+        $path = File::find($id);
+        $pathfolder = storage_path('app') . '/' . $path->files;
+        if (file_exists($pathfolder)) {
+            $url_file = FileStorage::get($pathfolder);
+            $type =  FileStorage::mimeType($pathfolder);
+            $response = Response::make($url_file, 200);
+            $response->header("Content-Type", $type);
+            return $response;
+        } else {
+            abort(404);
+        }
+    })->name('photo');
+
+    Route::delete('/files/delete/{id}', [ArsipController::class, 'delete_file'])->name('hapus.file');
 });
