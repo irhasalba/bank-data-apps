@@ -16011,9 +16011,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var ArsipFolder = function ArsipFolder() {
+var ArsipFolder = function ArsipFolder(props) {
+  var submenu = props.submenu;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({
-    nama_folder: ""
+    id_parent: submenu.id_parent,
+    nama_folder: "",
+    id_submenu: submenu.id_submenu
   }),
       _useState2 = _slicedToArray(_useState, 2),
       values = _useState2[0],
@@ -16021,6 +16025,7 @@ var ArsipFolder = function ArsipFolder() {
 
   var handlerSubmit = function handlerSubmit(e) {
     e.preventDefault();
+    console.log(values);
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post(route("dashboard.simpan.arsip"), values);
   };
 
@@ -16046,6 +16051,16 @@ var ArsipFolder = function ArsipFolder() {
               onSubmit: handlerSubmit,
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.FormGroup, {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.Label, {
+                  "for": "id_folder",
+                  children: "Lokasi Induk Folder"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.Input, {
+                  id: "id_folder",
+                  name: "id_folder",
+                  value: submenu.nama_sub_menu,
+                  readOnly: true
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.FormGroup, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.Label, {
                   "for": "nama_folder",
                   children: "Nama Folder"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.Input, {
@@ -16063,7 +16078,7 @@ var ArsipFolder = function ArsipFolder() {
                   icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faPlus
                 }), " Tambah"]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_5__.Link, {
-                href: route("dashboard.arsip"),
+                href: "#",
                 className: "btn btn-warning ml-2",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_0__.FontAwesomeIcon, {
                   icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faUndo
@@ -16125,7 +16140,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var ArsipList = function ArsipList(props) {
   var arsip = props.arsip,
-      flash = props.flash;
+      flash = props.flash,
+      id_parent = props.id_parent,
+      id_submenu = props.id_submenu;
   var alert = flash.message != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Alert, {
     dismissible: true,
     children: flash.message
@@ -16149,8 +16166,11 @@ var ArsipList = function ArsipList(props) {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Card, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.CardBody, {
           children: [visible != true ? alert : "", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__.Link, {
-            className: "btn btn-primary mb-2",
-            href: route("dashboard.tambah.arsip"),
+            className: "btn btn-primary mb-2 btn-sm",
+            href: route("dashboard.tambah.arsip", {
+              id_parent: id_parent,
+              id_submenu: id_submenu
+            }),
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
               icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faPlus
             }), " Tambah Folder Baru"]
@@ -16674,7 +16694,7 @@ var SubMenuPages = function SubMenuPages(props) {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
                     className: "text-center",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
-                      href: "#",
+                      href: route("dashboard.list.submenu.folder", data.id),
                       children: data.nama_submenu
                     })
                   })]

@@ -26,10 +26,10 @@ Route::post('/users', [AuthController::class, 'store'])->name('user.register');
 Route::get('/home', [DashboardController::class, 'index'])->name('home');
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::get('/home/submenu/{id}', [DashboardController::class, 'sub_menu'])->name('submenu');
+    Route::get('/home/submenu/folder/{id}', [ArsipController::class, 'index'])->name('list.submenu.folder');
     Route::get('/home/tambah/submenu/{id}', [DashboardController::class, 'tambah_submenu'])->name('tambah.submenu');
     Route::post('/home/tambah/simpan/submenu', [DashboardController::class, 'store_submenu'])->name('create.submenu');
-    Route::get('/home/arsip', [ArsipController::class, 'index'])->name('arsip');
-    Route::get('/arsip/tambah-folder', [ArsipController::class, 'create'])->name('tambah.arsip');
+    Route::get('/arsip/tambah/{id_parent}/{id_submenu}', [ArsipController::class, 'create'])->name('tambah.arsip');
     Route::post('/arsip/tambah/simpan', [ArsipController::class, 'store'])->name('simpan.arsip');
     Route::get('/arsip/folder/{id}', [ArsipController::class, 'show'])->name('arsip.folder');
     Route::get('/arsip/folder/uploads/{id}', [ArsipController::class, 'upload_file'])->name('arsip.upload');

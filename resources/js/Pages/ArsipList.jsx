@@ -7,10 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "@inertiajs/inertia-react";
 
 const ArsipList = (props) => {
-    const { arsip, flash } = props;
+    const { arsip, flash, id_parent, id_submenu } = props;
     const alert =
         flash.message != null ? <Alert dismissible>{flash.message}</Alert> : "";
     const [visible, SetVisible] = useState(false);
+
     useEffect(() => {
         setTimeout(() => {
             SetVisible(true);
@@ -25,8 +26,11 @@ const ArsipList = (props) => {
                     <CardBody>
                         {visible != true ? alert : ""}
                         <Link
-                            className="btn btn-primary mb-2"
-                            href={route("dashboard.tambah.arsip")}
+                            className="btn btn-primary mb-2 btn-sm"
+                            href={route("dashboard.tambah.arsip", {
+                                id_parent: id_parent,
+                                id_submenu: id_submenu,
+                            })}
                         >
                             <FontAwesomeIcon icon={faPlus} /> Tambah Folder Baru
                         </Link>

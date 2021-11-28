@@ -15,4 +15,14 @@ class ArsipModel extends Model
     {
         return $this->hasMany(FilesModel::class, 'id_folder');
     }
+
+    public function parent_folder()
+    {
+        return $this->belongsTo(CmsModel::class, 'id_parent_folder', 'id');
+    }
+
+    public function sub_menu_folder()
+    {
+        return $this->belongsTo(CmsSubMenu::class, 'id_submenu', 'id');
+    }
 }

@@ -7,20 +7,44 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\ArsipModel as Arsip;
 use App\Models\FilesModel;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class ArsipController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $arsip_data = Arsip::all();
-        return Inertia::render('ArsipList', ['arsip' => $arsip_data]);
+        $array = array();
+        $arsip_data = Arsip::where('id_submenu', $request->id)->get();
+        $id = $arsip_data[0];
+        foreach ($arsip_data as $key => $values) {
+            $array[$key] = [
+                'id' => $values->id,
+                'id_parent_folder' => $values->id_parent_folder,
+                'id_submenu' => $values->id_submenu,
+                'nama_folder' => $values->nama_folder,
+                'created_at' => $values->created_at,
+                'updated_at' => $values->updated_at
+            ];
+        }
+        return Inertia::render('ArsipList', ['arsip' => $array, 'id_parent' => $id->id_parent_folder, 'id_submenu' => $id->id_submenu]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return Inertia::render('ArsipFolder');
+        $submenu_id = $request->id_submenu;
+        $check_validate_folder =  Arsip::where('id_submenu', $submenu_id)->get();
+
+        $data = array();
+        foreach ($check_validate_folder as $key => $values) {
+            $data[$key] = [
+                'id_parent' => $values->id_parent_folder,
+                'id_submenu' => $values->sub_menu_folder->id,
+                'nama_sub_menu' => $values->sub_menu_folder->nama_submenu
+            ];
+        }
+        return Inertia::render('ArsipFolder', ['submenu' => $data[0]]);
     }
     public function store(Request $request)
     {
@@ -29,11 +53,17 @@ class ArsipController extends Controller
         ]);
         $nama_folder = str_replace(' ', '_', $request->nama_folder);
         $folder_data = storage_path('app') . '/' . $nama_folder;
-        mkdir($folder_data, 0777);
-        Arsip::create([
-            'nama_folder' => $nama_folder
-        ]);
-        return Redirect::route('dashboard.arsip')->with('message', 'Data Berhasil Ditambahkan');
+        if (file_exists($folder_data)) {
+            return 'Tidak dapat menambahkan data ! ditemukan folder yg sama';
+        } else {
+            mkdir($folder_data, 0777);
+            Arsip::create([
+                'id_parent_folder' => $request->id_parent,
+                'id_submenu' => $request->id_submenu,
+                'nama_folder' => $nama_folder
+            ]);
+            return Redirect::route('dashboard.list.submenu.folder', $request->id_submenu)->with('message', 'Data Berhasil Ditambahkan');
+        }
     }
 
     public function show(Request $request)

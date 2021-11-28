@@ -15,13 +15,17 @@ import NavbarComponent from "../components/templates/NavbarComponent";
 import { faPlus, faUndo } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "@inertiajs/inertia-react";
 
-const ArsipFolder = () => {
+const ArsipFolder = (props) => {
+    const { submenu } = props;
     const [values, setValues] = useState({
+        id_parent: submenu.id_parent,
         nama_folder: "",
+        id_submenu: submenu.id_submenu,
     });
 
     const handlerSubmit = (e) => {
         e.preventDefault();
+        console.log(values);
         Inertia.post(route("dashboard.simpan.arsip"), values);
     };
     const handlerchange = (e) => {
@@ -39,6 +43,17 @@ const ArsipFolder = () => {
                         <CardText>
                             <form onSubmit={handlerSubmit}>
                                 <FormGroup>
+                                    <Label for="id_folder">
+                                        Lokasi Induk Folder
+                                    </Label>
+                                    <Input
+                                        id="id_folder"
+                                        name="id_folder"
+                                        value={submenu.nama_sub_menu}
+                                        readOnly
+                                    />
+                                </FormGroup>
+                                <FormGroup>
                                     <Label for="nama_folder">Nama Folder</Label>
                                     <Input
                                         id="nama_folder"
@@ -52,10 +67,7 @@ const ArsipFolder = () => {
                                 <Button color="primary" type="submit">
                                     <FontAwesomeIcon icon={faPlus} /> Tambah
                                 </Button>
-                                <Link
-                                    href={route("dashboard.arsip")}
-                                    className="btn btn-warning ml-2"
-                                >
+                                <Link href="#" className="btn btn-warning ml-2">
                                     <FontAwesomeIcon icon={faUndo} /> Kembali
                                 </Link>
                             </form>

@@ -45,7 +45,12 @@ const SubMenuPages = (props) => {
                                                 {key + 1}
                                             </td>
                                             <td className="text-center">
-                                                <Link href="#">
+                                                <Link
+                                                    href={route(
+                                                        "dashboard.list.submenu.folder",
+                                                        data.id
+                                                    )}
+                                                >
                                                     {data.nama_submenu}
                                                 </Link>
                                             </td>
