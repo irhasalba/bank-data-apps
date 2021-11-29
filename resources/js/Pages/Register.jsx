@@ -1,48 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
     Button,
     Card,
     CardBody,
     CardText,
     CardTitle,
+    Col,
     FormGroup,
     Input,
     Label,
-    Alert,
     Row,
-    Col,
 } from "reactstrap";
 import Header from "../components/templates/Header.jsx";
 import { Inertia } from "@inertiajs/inertia";
 import bannerImage from "../assets/img/123 (1).png";
-import { Link } from "@inertiajs/inertia-react";
 
-const Login = (props = null) => {
-    console.log(props);
-    const { flash } = props;
-    const alert =
-        flash.message != null ? (
-            <Alert dismissible color="danger">
-                {flash.message}
-            </Alert>
-        ) : (
-            ""
-        );
+const Register = () => {
     const [values, setValue] = useState({
+        name: "",
         password: "",
         email: "",
     });
-    const [visible, SetVisible] = useState(false);
-
-    useEffect(() => {
-        setTimeout(() => {
-            SetVisible(true);
-        }, 3000);
-    });
-
     const handlerSubmit = (e) => {
         e.preventDefault();
-        Inertia.post(route("user.login"), values);
+        Inertia.post(route("user.register"), values);
     };
 
     const handlerchange = (e) => {
@@ -53,7 +34,7 @@ const Login = (props = null) => {
 
     return (
         <React.Fragment>
-            <Header title="Login Page" />
+            <Header title="Register Page" />
             <div className="container mt-5">
                 <div className="d-flex justify-content-center">
                     <Card
@@ -62,7 +43,7 @@ const Login = (props = null) => {
                     >
                         <CardBody>
                             <CardTitle tag="h2" className="text-center">
-                                Login Aplikasi Bank Data
+                                Register Aplikasi Bank Data
                             </CardTitle>
                             <Row>
                                 <Col>
@@ -75,6 +56,19 @@ const Login = (props = null) => {
                                 <Col>
                                     <CardText>
                                         <form onSubmit={handlerSubmit}>
+                                            <FormGroup>
+                                                <Label for="username">
+                                                    Username
+                                                </Label>
+                                                <Input
+                                                    id="username"
+                                                    name="name"
+                                                    placeholder="masukan username anda"
+                                                    type="text"
+                                                    value={values.name}
+                                                    onChange={handlerchange}
+                                                />
+                                            </FormGroup>
                                             <FormGroup>
                                                 <Label for="email">Email</Label>
                                                 <Input
@@ -103,15 +97,8 @@ const Login = (props = null) => {
                                                 color="primary"
                                                 type="submit"
                                             >
-                                                Login
+                                                Register
                                             </Button>
-                                            <p>
-                                                Silahkan{" "}
-                                                <Link href={route("regis")}>
-                                                    klik Disini{" "}
-                                                </Link>
-                                                Untuk Membuat Akun
-                                            </p>
                                         </form>
                                     </CardText>
                                 </Col>
@@ -124,4 +111,4 @@ const Login = (props = null) => {
     );
 };
 
-export default Login;
+export default Register;

@@ -28,8 +28,11 @@ const NavbarComponent = () => {
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/components/" className="text-white">
-                                user login
+                            <NavLink
+                                href={route("user.logout")}
+                                className="text-white"
+                            >
+                                Log Out
                             </NavLink>
                         </NavItem>
                     </Nav>

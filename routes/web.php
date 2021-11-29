@@ -23,10 +23,15 @@ use Illuminate\Support\Facades\File as FileStorage;
 
 Route::get('/', function () {
     return Inertia::render('Login');
-});
+})->name('login');
+Route::get('/register', function () {
+    return Inertia::render('Register');
+})->name('regis');
 Route::post('/users', [AuthController::class, 'store'])->name('user.register');
-Route::get('/home', [DashboardController::class, 'index'])->name('home');
-Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
+Route::post('/user/auth', [AuthController::class, 'index'])->name('user.login');
+Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
+Route::get('/home', [DashboardController::class, 'index'])->name('home')->middleware('auth');
+Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => 'auth'], function () {
     Route::get('/home/submenu/{id}', [DashboardController::class, 'sub_menu'])->name('submenu');
     Route::get('/home/submenu/folder/{parent}/{sub_parent}', [ArsipController::class, 'index'])->name('list.submenu.folder');
     Route::get('/home/tambah/submenu/{id}', [DashboardController::class, 'tambah_submenu'])->name('tambah.submenu');
